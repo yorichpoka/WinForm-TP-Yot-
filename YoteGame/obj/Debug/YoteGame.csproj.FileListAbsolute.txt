@@ -1,0 +1,12 @@
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\bin\Debug\YoteGame.exe.config
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\bin\Debug\YoteGame.exe
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\bin\Debug\YoteGame.pdb
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.Forms.Form_Authentification.resources
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.Forms.Form_Main.resources
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.Properties.Resources.resources
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.Resources.resources
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.csproj.GenerateResource.Cache
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.exe
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.pdb
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.csprojResolveAssemblyReference.cache
+C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.Forms.Form_Regles.resources
