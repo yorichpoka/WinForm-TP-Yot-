@@ -311,7 +311,6 @@
             this.pb_hand_player_1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pb_hand_player_1.TabIndex = 6;
             this.pb_hand_player_1.TabStop = false;
-            this.pb_hand_player_1.Visible = false;
             // 
             // groupBox2
             // 

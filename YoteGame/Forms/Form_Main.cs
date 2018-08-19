@@ -83,10 +83,7 @@ namespace YoteGame.Forms
             InitalisationForm();
 
             // -- Initialise current player -- //
-            Change_current_player(true);
-
-            // -- Initialiser le jeu du joueur 2 -- //
-
+            _currentPlayer = Type_Player.One;
         }
         #endregion
 
@@ -152,17 +149,14 @@ namespace YoteGame.Forms
         }
 
         // -- Change current player -- //
-        private void Change_current_player(Boolean reset)
+        private void Change_current_player()
         {
-            if (reset)
+            CurrentPlayer = (CurrentPlayer == Type_Player.One) ? Type_Player.Two
+                                                               : Type_Player.One;
+
+            if (CurrentPlayer == Type_Player.Two)
             {
-                CurrentPlayer = (ran.Next(9) <= 4) ? Type_Player.One
-                                                   : Type_Player.Two;
-            }
-            else
-            {
-                CurrentPlayer = (CurrentPlayer == Type_Player.One) ? Type_Player.Two
-                                                                   : Type_Player.One;
+                Player_2_Play();
             }
         }
 
@@ -240,7 +234,8 @@ namespace YoteGame.Forms
             timer.Stop();
 
             // -- Bulid bloc forgame -- //
-            string id_block = "44";
+            string id_block = MinMax.IA_jouer(YoteClass.CloneBoard(Board), Player_1, Player_2);
+
             var block = (PictureBox)pan_game.Controls.Find($"{id_block_name}{id_block}", false)[0];
 
             // -- Call action play -- //
@@ -267,12 +262,6 @@ namespace YoteGame.Forms
 
                 // -- Get action game -- //
                 Action_Player(block);
-
-                //MinMax minmax = new MinMax();
-                //var board_clone = YoteClass.CloneBoard(Board, 5, 6);
-                //minmax.IA_jouer(board_clone, 1);
-
-                Player_2_Play();
             }
             else
             {
@@ -302,7 +291,7 @@ namespace YoteGame.Forms
                 actionFree = false;
 
                 // -- Change current player -- //
-                Change_current_player(false);
+                Change_current_player();
             }
             // -- Check if token to win
             else if (block.BackColor != Color.Green)
@@ -342,12 +331,12 @@ namespace YoteGame.Forms
 
                     if (!actionFree)
                     {
-                        Change_current_player(false);
+                        Change_current_player();
                     }
                 }
                 else
                 {
-                    Change_current_player(false);
+                    Change_current_player();
                 }
             }
         }
@@ -633,7 +622,7 @@ namespace YoteGame.Forms
                 PlayAudio();
 
                 // -- Change current player -- //
-                Change_current_player(false);
+                Change_current_player();
                 
                 // -- Update value
                 isNotFirstplay = true;

@@ -77,18 +77,53 @@ namespace YoteGame.Model
             board[maxi,maxj] = State_Space.One;
         }
 
-        public string IA_jouer(State_Space[,] Copyboard, Player player1)
+        public static string IA_jouer(State_Space[,] Copyboard, Player player1, Player player2)
         {
             int max = -int.MaxValue;
             int tmp, maxi = 0, maxj = 0;
             List<string> locationPossible = new List<string>();
             List<Space> spaceNoUsable = new List<Space>();
+            Boolean p2_can_move = false;
+            Boolean p2_can_bouf = false;
 
-            // -- 
-            //for(Space space in player1.tokens)
-            //{
+            // -- Check if p2 can move -- //
+            foreach (Space token in player2.tokens)
+            {
+                if (Space.Enable_Space(Copyboard, token, Type_Player.Two).Count != 0)
+                {
+                    p2_can_move = true;
+                    break;
+                }
+            }
 
-            //}
+            // -- Check if p2 can bouf -- //
+            foreach (Space token in player2.tokens)
+            {
+                var space = Space.Enable_Space(Copyboard, token, Type_Player.One);
+
+                if (player1.tokens.Select(l => new { x = l.Row, y = l.Column }).Intersect(space.Select(l => new { x = l.Row, y = l.Column })).Count() != 0)
+                {
+                    p2_can_bouf = true;
+                    break;
+                }
+            }
+
+            // -- Check all tokens off player 1 -- //
+            foreach (Space token in player1.tokens)
+            {
+                Space.Enable_Space(Copyboard, token, Type_Player.One).ForEach(l => {
+                    if (player2.tokens.FirstOrDefault(ll => ll.Row == l.Row && ll.Column == l.Column) == null)
+                    {
+                        locationPossible.Add($"{l.Row}{l.Column}");
+                    }
+                });
+
+                if (token.Moves.Count >= 2)
+                {
+                    // -- Add like space used -- /
+                    spaceNoUsable.Add(token.Moves[token.Moves.Count - 2]);
+                }
+            }
 
             // -- Read through all row
             for (int x = 0; x < Program.row_board_count; x++)
@@ -98,6 +133,8 @@ namespace YoteGame.Model
                 {
                     if (Copyboard[x, y] == State_Space.None)
                     {
+                        //locationPossible.Add($"{x}{y}");
+
                         //player1.tokens[0].Moves
                         // -- Si le nombre de jeton à poser est atteint -- //
                         //if (Program.jeton_min_computeur_before_win =)
@@ -114,14 +151,82 @@ namespace YoteGame.Model
                         //}
 
                         // -- Cancellation
-                        Cancellation(Copyboard, x, y);
+                        //Cancellation(Copyboard, x, y);
                     }
                 }
             }
 
-            Copyboard[maxi, maxj] = State_Space.One;
+            if (p2_can_bouf && p2_can_move)
+            {
+                int val = YoteGame.Model.Static.YoteClass.ran.Next(1, 9);
 
-            return "";
+                // -- Bouf -- //
+                if (val <= 1 && val >= 3)
+                {
+                    foreach (Space token in player2.tokens)
+                    {
+                        var space = Space.Enable_Space(Copyboard, token, Type_Player.One);
+
+                        var result = player1.tokens.Select(l => new { x = l.Row, y = l.Column }).Intersect(space.Select(l => new { x = l.Row, y = l.Column }));
+
+                        if (result.Count() != 0)
+                        {
+                            var token_p1 = result.FirstOrDefault();
+
+
+
+                            break;
+                        }
+                    }
+                }
+                // -- Move -- //
+                else if (val <= 6 && val >= 4)
+                {
+
+                }
+                // -- Put -- //
+                else
+                {
+
+                }
+            }
+            else if (p2_can_bouf && !p2_can_move)
+            {
+                int val = YoteGame.Model.Static.YoteClass.ran.Next(1, 2);
+
+                // -- Bouf -- //
+                if (val == 1)
+                {
+
+                }
+                // -- Put -- //
+                else
+                {
+
+                }
+            }
+            else if (!p2_can_bouf && p2_can_move)
+            {
+                int val = YoteGame.Model.Static.YoteClass.ran.Next(1, 2);
+
+                // -- Move -- //
+                if (val == 1)
+                {
+
+                }
+                // -- Put -- //
+                else
+                {
+
+                }
+            }
+            // -- Put -- //
+            else
+            {
+
+            }
+
+            return locationPossible[YoteGame.Model.Static.YoteClass.ran.Next(locationPossible.Count)];
         }
 
         public int Max_Computer(State_Space[,] board, int profondeur)

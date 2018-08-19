@@ -8,6 +8,8 @@ namespace YoteGame.Model.Static
 {
     public static class YoteClass
     {
+        public static readonly Random ran = new Random();
+
         public static Boolean isValue(string[] value)
         {
             foreach (var val in value)
