@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YoteGame.Model
+namespace YoteGame.Model.Static
 {
-    public abstract class AppClass
+    public static class YoteClass
     {
         public static Boolean isValue(string[] value)
         {

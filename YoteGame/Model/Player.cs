@@ -16,7 +16,7 @@ namespace YoteGame.Model
         public Nature_Player nature { get; set; }
         public Nullable<Boolean> isOne { get; set; }
         public BindingList<Space> tokens { get; set; }
-        public int _score { get; set; }
+        private int _score { get; set; }
         public int score
         {
             get { return _score; }

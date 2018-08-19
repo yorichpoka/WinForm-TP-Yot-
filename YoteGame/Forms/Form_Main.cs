@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YoteGame.Model;
+using YoteGame.Model.Static;
 
 namespace YoteGame.Forms
 {
@@ -24,6 +25,7 @@ namespace YoteGame.Forms
 
         private const int RowCount = 5;
         private const int ColumnCount = 6;
+        private const string id_block_name = "pB_block_";
         private Boolean isNotFirstplay { get; set; }
 
         private Player Player_1 { get; set; }
@@ -82,6 +84,9 @@ namespace YoteGame.Forms
 
             // -- Initialise current player -- //
             Change_current_player(true);
+
+            // -- Initialiser le jeu du joueur 2 -- //
+
         }
         #endregion
 
@@ -190,7 +195,7 @@ namespace YoteGame.Forms
                     {
                         BackColor = System.Drawing.Color.Transparent,
                         Location = new System.Drawing.Point(location_x, location_y),
-                        Name = $"pB_block_{x}{y}",
+                        Name = $"{id_block_name}{x}{y}",
                         Size = new System.Drawing.Size(45, 45),
                         SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage,
                         Cursor = System.Windows.Forms.Cursors.Hand,
@@ -229,9 +234,17 @@ namespace YoteGame.Forms
         // -- Computer play
         private void Computer_Play()
         {
-            timer.Stop();
             toolStripProgressBar.Value = 0;
-            panTransform.Visible = false;
+            // -- Affichier le jeux -- //
+            this.panTransform.Visible = false;
+            timer.Stop();
+
+            // -- Bulid bloc forgame -- //
+            string id_block = "44";
+            var block = (PictureBox)pan_game.Controls.Find($"{id_block_name}{id_block}", false)[0];
+
+            // -- Call action play -- //
+            Action_Player(block);
         }
 
         // -- Check if computer plays
@@ -239,7 +252,7 @@ namespace YoteGame.Forms
         {
             if (Player_2.nature == Nature_Player.Computeur)
             {
-                panTransform.Visible = true;
+                this.panTransform.Visible = true;
                 timer.Start();
             }
         }
@@ -256,7 +269,7 @@ namespace YoteGame.Forms
                 Action_Player(block);
 
                 //MinMax minmax = new MinMax();
-                //var board_clone = AppClass.CloneBoard(Board, 5, 6);
+                //var board_clone = YoteClass.CloneBoard(Board, 5, 6);
                 //minmax.IA_jouer(board_clone, 1);
 
                 Player_2_Play();
@@ -342,13 +355,13 @@ namespace YoteGame.Forms
         // -- Free action play
         private void Free_Play()
         {
-            displaySpace = AppClass.SpaceOpponentBoard(Board, (CurrentPlayer == Type_Player.One) ? State_Space.Two
+            displaySpace = YoteClass.SpaceOpponentBoard(Board, (CurrentPlayer == Type_Player.One) ? State_Space.Two
                                                                                                  : State_Space.One);
 
             foreach (var val in displaySpace)
             {
                 // -- Disply new space 
-                ((PictureBox)pan_game.Controls.Find($"pB_block_{val.Row}{val.Column}", false)[0]).BackColor = Color.Green;
+                ((PictureBox)pan_game.Controls.Find($"{id_block_name}{val.Row}{val.Column}", false)[0]).BackColor = Color.Green;
 
                 // -- Action to free play
                 actionFree = true;
@@ -364,7 +377,7 @@ namespace YoteGame.Forms
                 Board[CurrentToken.Row, CurrentToken.Column] = State_Space.None;
 
                 // -- Get win token -- //
-                Space win_token = AppClass.WinTokenExist(new_space, CurrentToken);
+                Space win_token = YoteClass.WinTokenExist(new_space, CurrentToken);
 
                 if (CurrentPlayer == Type_Player.One)
                 {
@@ -385,7 +398,7 @@ namespace YoteGame.Forms
                     }
 
                     // -- Disply new space 
-                    ((PictureBox)pan_game.Controls.Find($"pB_block_{new_space.Row}{new_space.Column}", false)[0]).Image = Resources.ball_gray;
+                    ((PictureBox)pan_game.Controls.Find($"{id_block_name}{new_space.Row}{new_space.Column}", false)[0]).Image = Resources.ball_gray;
                 }
                 else
                 {
@@ -406,7 +419,7 @@ namespace YoteGame.Forms
                     }
 
                     // -- Disply new space 
-                    ((PictureBox)pan_game.Controls.Find($"pB_block_{new_space.Row}{new_space.Column}", false)[0]).Image = Resources.ball_black;
+                    ((PictureBox)pan_game.Controls.Find($"{id_block_name}{new_space.Row}{new_space.Column}", false)[0]).Image = Resources.ball_black;
                 }
                 // -- Update win token
                 Win_Token(win_token, new_space);
@@ -461,20 +474,20 @@ namespace YoteGame.Forms
                 if (!actionFree)
                 {
                     // -- Disply old space 
-                    ((PictureBox)pan_game.Controls.Find($"pB_block_{CurrentToken.Row}{CurrentToken.Column}", false)[0]).Image = null;
+                    ((PictureBox)pan_game.Controls.Find($"{id_block_name}{CurrentToken.Row}{CurrentToken.Column}", false)[0]).Image = null;
                 }
 
                 // -- Disply old space 
-                ((PictureBox)pan_game.Controls.Find($"pB_block_{win_token.Row}{win_token.Column}", false)[0]).Image = null;
-                ((PictureBox)pan_game.Controls.Find($"pB_block_{win_token.Row}{win_token.Column}", false)[0]).BackColor = Color.Transparent;
+                ((PictureBox)pan_game.Controls.Find($"{id_block_name}{win_token.Row}{win_token.Column}", false)[0]).Image = null;
+                ((PictureBox)pan_game.Controls.Find($"{id_block_name}{win_token.Row}{win_token.Column}", false)[0]).BackColor = Color.Transparent;
             }
             else
             {
                 // -- Disply old space 
-                ((PictureBox)pan_game.Controls.Find($"pB_block_{CurrentToken.Row}{CurrentToken.Column}", false)[0]).Image = null;
+                ((PictureBox)pan_game.Controls.Find($"{id_block_name}{CurrentToken.Row}{CurrentToken.Column}", false)[0]).Image = null;
 
                 // -- Disply old space 
-                ((PictureBox)pan_game.Controls.Find($"pB_block_{new_space.Row}{new_space.Column}", false)[0]).BackColor = Color.Transparent;
+                ((PictureBox)pan_game.Controls.Find($"{id_block_name}{new_space.Row}{new_space.Column}", false)[0]).BackColor = Color.Transparent;
             }
         }
 
@@ -495,7 +508,7 @@ namespace YoteGame.Forms
         // -- Generate victory
         private void Generate_Victory(Type_Player player)
         {
-            if (isNotFirstplay && AppClass.IsVictory(Board, player))
+            if (isNotFirstplay && YoteClass.IsVictory(Board, player))
             {
                 MessageBox.Show(
                     $"Félicitation, le joueur{((player == Type_Player.One) ? "1 (" + Player_2.name + ")" : "2 (" + Player_1.name + ")")} a gagné!",
@@ -516,17 +529,16 @@ namespace YoteGame.Forms
             displaySpace = Space.Enable_Space(Board, space_block, CurrentPlayer);
 
             // -- Disply selected 
-            ((PictureBox)pan_game.Controls.Find($"pB_block_{space_block.Row}{space_block.Column}", false)[0]).BackColor = Color.LightGoldenrodYellow;
+            ((PictureBox)pan_game.Controls.Find($"{id_block_name}{space_block.Row}{space_block.Column}", false)[0]).BackColor = Color.LightGoldenrodYellow;
             // -- Display all enable space -- //
             foreach (var space in displaySpace)
             {
                 // -- Check previous action
-                if (!AppClass.IsPreviousAction(CurrentPlayer == Type_Player.One ? Player_1 : Player_2, space_block, space, actionFree))
+                if (!YoteClass.IsPreviousAction(CurrentPlayer == Type_Player.One ? Player_1 : Player_2, space_block, space, actionFree))
                 {
-                    ((PictureBox)pan_game.Controls.Find($"pB_block_{space.Row}{space.Column}", false)[0]).BackColor = (space.State == State_Space.None) ? Color.Green
-                                                                                                                                                        : ((CurrentPlayer == Type_Player.One && space.State == State_Space.Two) ||
-                                                                                                                                                           (CurrentPlayer == Type_Player.Two && space.State == State_Space.One)) ? Color.Red
-                                                                                                                                                                                                                                 : Color.Transparent;
+                    ((PictureBox)pan_game.Controls.Find($"{id_block_name}{space.Row}{space.Column}", false)[0]).BackColor = (space.State == State_Space.None) ? Color.Green
+                                                                                                                                                              : ((CurrentPlayer == Type_Player.One && space.State == State_Space.Two) || (CurrentPlayer == Type_Player.Two && space.State == State_Space.One)) ? Color.Red
+                                                                                                                                                                                                                                                                                                               : Color.Transparent;
                 }
                 lb_status_game.Text = "Vous devez selectionner un des emplacements de jeux!";
             }
@@ -539,14 +551,14 @@ namespace YoteGame.Forms
         {
             if (!actionFree)
             {
-                if (((PictureBox)pan_game.Controls.Find($"pB_block_{space_block.Row}{space_block.Column}", false)[0]).BackColor == Color.LightGoldenrodYellow)
+                if (((PictureBox)pan_game.Controls.Find($"{id_block_name}{space_block.Row}{space_block.Column}", false)[0]).BackColor == Color.LightGoldenrodYellow)
                 {
                     // -- Disply selected 
-                    ((PictureBox)pan_game.Controls.Find($"pB_block_{space_block.Row}{space_block.Column}", false)[0]).BackColor = Color.Transparent;
+                    ((PictureBox)pan_game.Controls.Find($"{id_block_name}{space_block.Row}{space_block.Column}", false)[0]).BackColor = Color.Transparent;
                     // -- Display all enable space -- //
                     foreach (var space in displaySpace)
                     {
-                        ((PictureBox)pan_game.Controls.Find($"pB_block_{space.Row}{space.Column}", false)[0]).BackColor = Color.Transparent;
+                        ((PictureBox)pan_game.Controls.Find($"{id_block_name}{space.Row}{space.Column}", false)[0]).BackColor = Color.Transparent;
                     }
 
                     lb_status_game.Text = "...";
@@ -557,7 +569,7 @@ namespace YoteGame.Forms
                 // -- Display all enable space -- //
                 foreach (var space in displaySpace)
                 {
-                    ((PictureBox)pan_game.Controls.Find($"pB_block_{space.Row}{space.Column}", false)[0]).BackColor = Color.Transparent;
+                    ((PictureBox)pan_game.Controls.Find($"{id_block_name}{space.Row}{space.Column}", false)[0]).BackColor = Color.Transparent;
                 }
 
                 lb_status_game.Text = "...";
@@ -571,11 +583,11 @@ namespace YoteGame.Forms
 
         private Boolean Display_Move_Enable()
         {
-            foreach(var block in pan_game.Controls)
+            foreach(PictureBox block in pan_game.Controls)
             {
-                if (((PictureBox)block).BackColor == Color.Green || 
-                    ((PictureBox)block).BackColor == Color.Red || 
-                    ((PictureBox)block).BackColor == Color.LightGoldenrodYellow)
+                if (block.BackColor == Color.Green || 
+                    block.BackColor == Color.Red || 
+                    block.BackColor == Color.LightGoldenrodYellow)
                     return true;
             }
             return false;
@@ -585,8 +597,8 @@ namespace YoteGame.Forms
         {
             return
                 new Space(
-                    Convert.ToInt32(name.Replace("pB_block_", "")[0].ToString()),
-                    Convert.ToInt32(name.Replace("pB_block_", "")[1].ToString())
+                    Convert.ToInt32(name.Replace($"{id_block_name}", "")[0].ToString()),
+                    Convert.ToInt32(name.Replace($"{id_block_name}", "")[1].ToString())
                 );
         }
 
@@ -667,7 +679,9 @@ namespace YoteGame.Forms
         private void quitterToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Fermer l'application ?", "Information", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
                 this.Close();
+            }
         }
 
         private void nouvellePartieToolStripMenuItem1_Click(object sender, EventArgs e)

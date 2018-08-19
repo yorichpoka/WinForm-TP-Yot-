@@ -32,7 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Main));
             this.sStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panTransform = new System.Windows.Forms.Panel();
             this.lb_status_game = new System.Windows.Forms.Label();
             this.gBox_player_2 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -70,8 +72,6 @@
             this.nouvellePartieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripProgressBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.panTransform = new System.Windows.Forms.Panel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.sStrip.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -109,6 +109,12 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel.Text = "toolStripStatusLabel1";
             // 
+            // toolStripProgressBar
+            // 
+            this.toolStripProgressBar.Name = "toolStripProgressBar";
+            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar.Visible = false;
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -123,6 +129,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(665, 402);
             this.panel2.TabIndex = 3;
+            // 
+            // panTransform
+            // 
+            this.panTransform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panTransform.BackColor = System.Drawing.Color.Transparent;
+            this.panTransform.Location = new System.Drawing.Point(144, 30);
+            this.panTransform.Name = "panTransform";
+            this.panTransform.Size = new System.Drawing.Size(383, 333);
+            this.panTransform.TabIndex = 9;
+            this.panTransform.Visible = false;
             // 
             // lb_status_game
             // 
@@ -492,24 +510,6 @@
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
             this.quitterToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.quitterToolStripMenuItem.Text = "Quitter ?";
-            // 
-            // toolStripProgressBar
-            // 
-            this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar.Visible = false;
-            // 
-            // panTransform
-            // 
-            this.panTransform.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panTransform.BackColor = System.Drawing.Color.Transparent;
-            this.panTransform.Location = new System.Drawing.Point(144, 30);
-            this.panTransform.Name = "panTransform";
-            this.panTransform.Size = new System.Drawing.Size(383, 333);
-            this.panTransform.TabIndex = 9;
-            this.panTransform.Visible = false;
             // 
             // timer
             // 

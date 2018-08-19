@@ -74,7 +74,7 @@
     <Compile Include="Forms\Form_Regles.Designer.cs">
       <DependentUpon>Form_Regles.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\AppClass.cs" />
+    <Compile Include="Model\Static\YoteClass.cs" />
     <Compile Include="Model\Enumeration.cs" />
     <Compile Include="Model\Interfaces\IMinMax.cs" />
     <Compile Include="Model\MiniMax.cs" />
@@ -167,6 +167,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hand_get.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dll\Interop.WMPLib.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

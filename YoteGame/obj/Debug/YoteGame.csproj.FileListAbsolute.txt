@@ -10,3 +10,15 @@ C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\
 C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.pdb
 C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.csprojResolveAssemblyReference.cache
 C:\Users\POKA\Documents\Visual Studio 2015\Projects\YoteGame\YoteGame\obj\Debug\YoteGame.Forms.Form_Regles.resources
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\bin\Debug\YoteGame.exe.config
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.exe
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.pdb
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.csprojResolveAssemblyReference.cache
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.Forms.Form_Authentification.resources
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.Forms.Form_Main.resources
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.Forms.Form_Regles.resources
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.Properties.Resources.resources
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.Resources.resources
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\obj\Debug\YoteGame.csproj.GenerateResource.Cache
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\bin\Debug\YoteGame.exe
+E:\DOCUMENTS\KEMING Loic\WinForm-TP-Yote\YoteGame\bin\Debug\YoteGame.pdb

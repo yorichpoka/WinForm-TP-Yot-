@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using YoteGame.Model;
+using YoteGame.Model.Static;
 
 namespace YoteGame.Forms
 {
@@ -16,8 +17,6 @@ namespace YoteGame.Forms
         public Form_Authentification()
         {
             InitializeComponent();
-
-            Testes();
         }
 
         // -- Event -- //
@@ -30,7 +29,7 @@ namespace YoteGame.Forms
         private void bt_go_Click(object sender, EventArgs e)
         {
             // -- Valisation form -- //
-            if (!AppClass.isValue(new string[] { txtBox_name1.Text, cBox_name2.Text }))
+            if (!YoteClass.isValue(new string[] { txtBox_name1.Text, cBox_name2.Text }))
                 MessageBox.Show("Veuillez entrer les noms des joueurs!", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
@@ -42,12 +41,6 @@ namespace YoteGame.Forms
                 this.Hide();
             }
 
-        }
-
-        private void Testes()
-        {
-            txtBox_name1.Text = "POKA";
-            cBox_name2.Text = "Ulrich";
         }
     }
 }

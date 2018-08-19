@@ -77,6 +77,53 @@ namespace YoteGame.Model
             board[maxi,maxj] = State_Space.One;
         }
 
+        public string IA_jouer(State_Space[,] Copyboard, Player player1)
+        {
+            int max = -int.MaxValue;
+            int tmp, maxi = 0, maxj = 0;
+            List<string> locationPossible = new List<string>();
+            List<Space> spaceNoUsable = new List<Space>();
+
+            // -- 
+            //for(Space space in player1.tokens)
+            //{
+
+            //}
+
+            // -- Read through all row
+            for (int x = 0; x < Program.row_board_count; x++)
+            {
+                // -- Read through all column
+                for (int y = 0; y < Program.column_board_count; y++)
+                {
+                    if (Copyboard[x, y] == State_Space.None)
+                    {
+                        //player1.tokens[0].Moves
+                        // -- Si le nombre de jeton à poser est atteint -- //
+                        //if (Program.jeton_min_computeur_before_win =)
+                        //// -- Simulationn
+                        //Simulation(Copyboard, x, y, State_Space.Two);
+
+                        //tmp = Min_Human(Copyboard, profondeur - 1);
+
+                        //if (tmp > max)
+                        //{
+                        //    max = tmp;
+                        //    maxi = x;
+                        //    maxj = y;
+                        //}
+
+                        // -- Cancellation
+                        Cancellation(Copyboard, x, y);
+                    }
+                }
+            }
+
+            Copyboard[maxi, maxj] = State_Space.One;
+
+            return "";
+        }
+
         public int Max_Computer(State_Space[,] board, int profondeur)
         {
             if (profondeur == 0 || Gagnant(board) != State_Space.None)

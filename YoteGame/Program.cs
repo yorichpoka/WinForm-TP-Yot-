@@ -16,6 +16,7 @@ namespace YoteGame
         public static Form_Regles form_regle { get; set; }
         public static readonly int row_board_count = 5;
         public static readonly int column_board_count = 6;
+        public static readonly int jeton_min_computeur_before_win = 4;
 
         /// <summary>
         /// Point d'entrée principal de l'application.
